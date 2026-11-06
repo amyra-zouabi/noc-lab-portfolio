@@ -364,12 +364,10 @@ noc-lab-portfolio/
 └── netbox/
     └── README.md            # Procédure de déploiement
 ```
-
+Non versionné (exclu par .gitignore) : group_vars/*/vault.yml, inventory.yml,
+et le contenu de configs/ — ces fichiers contiennent des secrets ou des hashs d'équipements.
 ---
 
 ## Auteur
 
 **Amyra Zouabi** — Profil réseau orienté administration et supervision NOC
-
-- LinkedIn : *(à compléter)*
-- Email : zouabiamira422@gmail.com
