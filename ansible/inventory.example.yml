@@ -1,0 +1,33 @@
+# Exemple d'inventaire — les secrets reels sont dans group_vars/*/vault.yml (Ansible Vault)
+all:
+  children:
+    vyos_routers:
+      hosts:
+        R-HQ:
+          ansible_host: 10.0.0.254
+        R-B1:
+          ansible_host: 10.1.1.2
+        R-B2:
+          ansible_host: 10.2.1.2
+        FW-HQ:
+          ansible_host: 10.0.0.1
+      vars:
+        ansible_network_os: vyos.vyos.vyos
+        ansible_connection: ansible.netcommon.network_cli
+        ansible_user: "{{ vault_vyos_user }}"
+        ansible_ssh_pass: "{{ vault_vyos_ssh_pass }}"
+        ansible_command_timeout: 90
+
+    mikrotik_switches:
+      hosts:
+        SW-HQ:
+          ansible_host: 10.0.99.2
+        SW-B1:
+          ansible_host: 10.1.0.2
+        SW-B2:
+          ansible_host: 10.2.0.2
+      vars:
+        ansible_network_os: community.routeros.routeros
+        ansible_connection: ansible.netcommon.network_cli
+        ansible_user: "{{ vault_mikrotik_user }}"
+        ansible_ssh_pass: "{{ vault_mikrotik_ssh_pass }}"

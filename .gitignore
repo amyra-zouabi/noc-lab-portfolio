@@ -1,0 +1,17 @@
+# Secrets et identifiants
+**/vault.yml
+**/*vault*
+.vault_pass*
+*.key
+*.pem
+
+# Inventaire et configs réelles
+ansible/inventory.yml
+configs/vyos/*
+configs/mikrotik/*
+!configs/*/.gitkeep
+
+# Artefacts
+*.log
+*.retry
+__pycache__/

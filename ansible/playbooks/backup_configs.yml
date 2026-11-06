@@ -1,0 +1,32 @@
+---
+- name: Sauvegarde des configurations VyOS
+  hosts: vyos_routers
+  gather_facts: no
+  tasks:
+    - name: Récupérer la configuration en cours
+      vyos.vyos.vyos_command:
+        commands:
+          - show configuration commands
+      register: config_output
+
+    - name: Sauvegarder localement
+      ansible.builtin.copy:
+        content: "{{ config_output.stdout[0] }}"
+        dest: "../backups/{{ inventory_hostname }}_{{ lookup('pipe', 'date +%Y%m%d-%H%M%S') }}.txt"
+      delegate_to: localhost
+
+- name: Sauvegarde des configurations MikroTik
+  hosts: mikrotik_switches
+  gather_facts: no
+  tasks:
+    - name: Récupérer la configuration en cours
+      community.routeros.command:
+        commands:
+          - /export
+      register: config_output
+
+    - name: Sauvegarder localement
+      ansible.builtin.copy:
+        content: "{{ config_output.stdout[0] }}"
+        dest: "../backups/{{ inventory_hostname }}_{{ lookup('pipe', 'date +%Y%m%d-%H%M%S') }}.txt"
+      delegate_to: localhost

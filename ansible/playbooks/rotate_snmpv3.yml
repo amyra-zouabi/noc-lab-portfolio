@@ -1,0 +1,27 @@
+---
+- name: Rotation SNMPv3 - routeurs VyOS
+  hosts: vyos_routers
+  gather_facts: no
+  vars:
+     new_auth_pass: "{{ vault_snmpv3_auth_pass }}"
+     new_priv_pass: "{{ vault_snmpv3_priv_pass }}"
+  tasks:
+    - name: Mettre à jour le mot de passe d'authentification et de chiffrement
+      vyos.vyos.vyos_config:
+        lines:
+          - "set service snmp v3 user nocadmin auth plaintext-password '{{ new_auth_pass }}'"
+          - "set service snmp v3 user nocadmin privacy plaintext-password '{{ new_priv_pass }}'"
+        save: yes
+
+- name: Rotation SNMPv3 - switches MikroTik
+  hosts: mikrotik_switches
+  gather_facts: no
+  vars:
+    new_auth_pass: "NocLab2026RotAuth"
+    new_priv_pass: "NocLab2026RotPriv"
+  tasks:
+    - name: Mettre à jour le mot de passe d'authentification et de chiffrement
+      community.routeros.command:
+        commands:
+          - "/snmp community set nocadmin authentication-password={{ new_auth_pass }}"
+          - "/snmp community set nocadmin encryption-password={{ new_priv_pass }}"
