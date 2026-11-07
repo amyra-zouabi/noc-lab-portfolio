@@ -17,8 +17,8 @@
   hosts: mikrotik_switches
   gather_facts: no
   vars:
-    new_auth_pass: "NocLab2026RotAuth"
-    new_priv_pass: "NocLab2026RotPriv"
+     new_auth_pass: "{{ vault_snmpv3_auth_pass }}"
+     new_priv_pass: "{{ vault_snmpv3_priv_pass }}"
   tasks:
     - name: Mettre à jour le mot de passe d'authentification et de chiffrement
       community.routeros.command:
