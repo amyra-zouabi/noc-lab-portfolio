@@ -347,10 +347,10 @@ d'occupation par sous-réseau — ce qu'un tableur ne permet pas de maintenir de
 noc-lab-portfolio/
 ├── README.md
 ├── docs/
-│   ├── architecture/        # Schémas de topologie
-│   ├── incidents.md         # Rapports d'incident détaillés
-│   ├── runbook.md           # Procédures opérationnelles
-│   └── screenshots/         # Captures Zabbix, NetBox, Telegram
+│   ├── topologie-eve-ng.png    # opologie du lab dans EVE-NG
+│   ├── incidents.md            # Rapports d'incident détaillés
+│   ├── zabbix-dashboard.png    # Supervision des 7 équipements      
+│   └── netbox-ipam.png         # IPAM NetBox
 ├── ansible/
 │   ├── ansible.cfg
 │   ├── inventory.yml
